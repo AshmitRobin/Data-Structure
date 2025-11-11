@@ -1,0 +1,94 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main()
+{
+int rows, cols, nonZero;
+    cout<<"Enter number of rows: ";
+    cin>>rows;
+     cout<<"Enter number of columns: ";
+    cin>>cols;
+    cout<<"Enter number of non-zero elements: ";
+     cin>>nonZero;
+
+string matrix[rows][cols];
+
+    for(int i=0; i<rows; i++)
+    {
+    for(int j=0; j<cols; j++)
+        {
+         matrix[i][j]= "";
+        }
+    }
+
+    int trRow[nonZero], trCol[nonZero];
+    string trArtists[nonZero];
+
+    for(int k=0; k<nonZero; k++)
+    {
+        cout<<"\nEnter row, column and Artist Name: ";
+        cin>>trRow[k]>>trCol[k];
+        cin.ignore();
+        getline(cin, trArtists[k]);
+        matrix[trRow[k]][trCol[k]]= trArtists[k];
+    }
+
+     cout<< "\nMusic Matrix:\n";
+     for(int i=0; i<rows; i++)
+     {
+    for(int j=0; j<cols; j++)
+        {
+        if(matrix[i][j]== "")
+            {
+                cout<< "Empty\t";
+            }
+            else
+            {
+                cout << matrix[i][j]<< "\t";
+            }
+        }
+        cout<<endl;
+    }
+
+     cout<<"\nTriplet Form\n";
+    for(int k=0; k<nonZero; k++)
+    {
+      cout<< trRow[k]<< "\t"<< trCol[k]<< "\t"<< trArtists[k]<< endl;
+    }
+
+    int total=rows*cols;
+     if(nonZero < (total/2))
+    {
+    cout<<"\nMatrix is Sparse\n";
+    }
+    else
+    {
+        cout<<"\nMatrix is not Sparse\n";
+    }
+
+    cout<<"Non-zero elements: "<< nonZero<< endl;
+    cout<<"Zero elements: "<< total-nonZero<< endl;
+
+      string search;
+  cout << "\nEnter artist to search: ";
+  cin.ignore(); 
+  getline(cin, search);
+
+  bool found = false;
+  for (int k = 0; k < nonZero; k++) 
+  {
+    if (trArtists[k]==search) 
+    {
+    cout << "Found at Row " << trRow[k] << "and Col " << trCol[k] << endl;
+        found = true;
+    }
+}
+
+if (!found)
+{
+cout << "Artist not found\n";
+}
+
+  return 0;
+}
